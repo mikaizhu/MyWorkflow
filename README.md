@@ -41,6 +41,7 @@ alias vim=nvim
 - 可以进行程序debug(可以服务器也可以本地debug)
 - 可以在vim中运行终端命令
 - 可以在vim中进行当前目录的文件搜索
+- 方便markdown记录笔记
 
 ## vim插件管理
 
@@ -49,6 +50,13 @@ alias vim=nvim
 在nvim即init.vim目录下，建立一个文件夹autoload，下载plug.vim，然后放在这个目录
 中即可, 或者直接吧文件下载下来，然后复制进去即可
 
+目录结构应该:
+
+```
+~/.config/nvim/autoload/plug.vim
+```
+
+下载完文件，然后放在上面目录结构:
 ```
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
