@@ -2,7 +2,9 @@
 # . ./src/toc.sh
 # python3 src/to_top.py
 # 上传文件到GitHub
+git config --global user.email "mcspero123@gmail.com"
 grepository_ssh_url=git@github.com:mikaizhu/MyWorkflow.git
+
 # we can use command : git remote -v to see what url is
 # git 有时候会忽略大小写，这里我们要设置大小写识别，使用下面代码
 # git config core.ignorecase false
