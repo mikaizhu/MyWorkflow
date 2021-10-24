@@ -54,10 +54,9 @@ nnoremap <Leader>fk :FloatermKill<CR>
 nnoremap <Leader>fs :FloatermSend
 vnoremap <Leader>fs :FloatermSend<CR>
 
-nnoremap <silent> <C-[> :FloatermToggle<CR>
+nnoremap <Leader>ft :FloatermToggle<CR>
 "进入命令行模式后，要用tnoremap进行映射
 tnoremap <silent> <C-[> <C-\><C-n>:FloatermToggle<CR>
-tnoremap <silent> <Esc> <C-\><C-n>:FloatermToggle<CR>
 " 从termial切换窗口, 有时候会和tmux按键冲突，可以替换成其他的
 tnoremap <silent> <C-b>h <C-\><C-n><C-w>h
 nnoremap <silent> <C-b>l <C-w>l
