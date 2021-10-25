@@ -1,9 +1,41 @@
+" abbrev 是替换的缩写，i表示只有insert模式下才会起作用
+" 将前面替换成后面, 遇到空格后替换
+iabbrev @@    steve@stevelosh.com
+iabbrev ccopy Copyright 2013 Steve Losh, all rights reserved.
+
+" 自动命令学习:autocmd
+" :autocmd BufNewFile * :write
+"         ^          ^ ^
+"         |          | |
+"         |          | 要执行的命令
+"         |          |
+"         |          用于事件过滤的“模式（pattern, 如果是*.txt则只对txt文件有效”
+"         |
+"         要监听的“事件”
+" bufwritePre会检测是否有新的缓存区出现，如果有则执行后面命令
+" autocmd BufWritePre *.html :normal gg=G
+
+" vim缓冲区的设置 <buffer>
+iabbrev <buffer> --- &mdash;
+
 let g:mapleader=';'
+
+" indent config
+" 可以用set同时设置多个值，中间用空格分隔
+" python 默认tab为4个空格，cindent为
+set cindent shiftwidth=4 tabstop=4 autoindent smartindent
 
 " vim大小写设置, 设置为不区分大小写
 " 只能匹配如果有大写，则不匹配小写
 set ignorecase
 set smartcase
+
+" 快速打开vim配置文件
+nnoremap <leader>ev :vsplit $HOME/.config/nvim/init.vim<CR>
+
+" 撤销和恢复操作
+" u是恢复，U是撤销恢复
+nnoremap U <C-r>
 
 " 打开记录行号
 set nu 
@@ -14,7 +46,6 @@ autocmd BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
-
 
 
 " vim font config: vim-devicons
@@ -48,13 +79,20 @@ let g:floaterm_width=0.5
 "让terminal打开默认的是当前项目的目录下"
 let g:floaterm_borderchars='.root'
 
-nnoremap <Leader>fn :FloatermNew
+" 这里fn命令不建议加回车，因为可以有后面操作
+function CreateFloaterm()
+	w<CR>	
+	FloatermNew
+endfunction
+
+nnoremap <silent> <Leader>fn :call CreateFloaterm()<CR>
 nnoremap <Leader>sh :FloatermShow<CR>
 nnoremap <Leader>fk :FloatermKill<CR>
+" 普通模式下如果send不加回车，可视模式下加回车，可以直接将可视部分send进命令
 nnoremap <Leader>fs :FloatermSend
 vnoremap <Leader>fs :FloatermSend<CR>
 
-nnoremap <Leader>ft :FloatermToggle<CR>
+nnoremap <silent> <Leader>ft :w<CR>:FloatermToggle<CR>
 "进入命令行模式后，要用tnoremap进行映射
 tnoremap <silent> <C-[> <C-\><C-n>:FloatermToggle<CR>
 " 从termial切换窗口, 有时候会和tmux按键冲突，可以替换成其他的
@@ -73,6 +111,7 @@ call plug#end()
 
 
 " nerd tree config
+" use C-w + h l to switch windows
 nnoremap <leader>nt :NERDTree<CR>
 
 " osyank config
@@ -105,4 +144,3 @@ inoremap ( ()<Esc>i
 inoremap { {}<Esc>i
 inoremap ' ''<Esc>i
 inoremap " ""<Esc>i
-
