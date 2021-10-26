@@ -1,19 +1,35 @@
+<<<<<<< HEAD
 " TODO
 " 1. 添加代码折叠功能
 " 2. 为文件添加状态栏
 
+=======
+>>>>>>> 870bee3b04ea00fb9c3e8ac7d974a4e22cd328ba
 " abbrev 是替换的缩写，i表示只有insert模式下才会起作用
 " 将前面替换成后面, 遇到空格后替换
 iabbrev @@    steve@stevelosh.com
 iabbrev ccopy Copyright 2013 Steve Losh, all rights reserved.
 
+<<<<<<< HEAD
 " 自己定义新的移动方式：all 可以配合dall 和 yall复制和删除所有
 onoremap all :<c-u>execute "normal! ggVG"<cr>
 
+=======
+" 自动命令学习:autocmd
+" :autocmd BufNewFile * :write
+"         ^          ^ ^
+"         |          | |
+"         |          | 要执行的命令
+"         |          |
+"         |          用于事件过滤的“模式（pattern, 如果是*.txt则只对txt文件有效”
+"         |
+"         要监听的“事件”
+>>>>>>> 870bee3b04ea00fb9c3e8ac7d974a4e22cd328ba
 " bufwritePre会检测是否有新的缓存区出现，如果有则执行后面命令
 " autocmd BufWritePre *.html :normal gg=G
 
 " vim缓冲区的设置 <buffer>
+<<<<<<< HEAD
 " 缓冲区只对在同一个缓存区的文件有效, 下面代码只在某文件中leader键起作用
 " :autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
 " :autocmd FileType python     nnoremap <buffer> <localleader>c I#<esc>
@@ -33,6 +49,9 @@ set statusline+=%=        " 切换到右边
 set statusline+=%l        " 当前行
 set statusline+=/         " 分隔符
 set statusline+=%L        " 总行数
+=======
+iabbrev <buffer> --- &mdash;
+>>>>>>> 870bee3b04ea00fb9c3e8ac7d974a4e22cd328ba
 
 let g:mapleader=';'
 
@@ -95,6 +114,7 @@ let g:floaterm_width=0.5
 "让terminal打开默认的是当前项目的目录下"
 let g:floaterm_borderchars='.root'
 
+<<<<<<< HEAD
 " 函数中的指令，默认会在后面使用回车，所以不需要手动加入
 function! Fn()
 	:w!
@@ -102,12 +122,22 @@ function! Fn()
 endfunction
 
 nnoremap <silent> <Leader>fn :call Fn()<CR>
+=======
+" 这里fn命令不建议加回车，因为可以有后面操作
+function CreateFloaterm()
+	w<CR>	
+	FloatermNew
+endfunction
+
+nnoremap <silent> <Leader>fn :call CreateFloaterm()<CR>
+>>>>>>> 870bee3b04ea00fb9c3e8ac7d974a4e22cd328ba
 nnoremap <Leader>sh :FloatermShow<CR>
 nnoremap <Leader>fk :FloatermKill<CR>
 " 普通模式下如果send不加回车，可视模式下加回车，可以直接将可视部分send进命令
 nnoremap <Leader>fs :FloatermSend
 vnoremap <Leader>fs :FloatermSend<CR>
 
+<<<<<<< HEAD
 
 function! Ft()
 	:w!
@@ -115,6 +145,9 @@ function! Ft()
 endfunction
 nnoremap <silent> <Leader>fo :call Ft()<CR>
 
+=======
+nnoremap <silent> <Leader>ft :w<CR>:FloatermToggle<CR>
+>>>>>>> 870bee3b04ea00fb9c3e8ac7d974a4e22cd328ba
 "进入命令行模式后，要用tnoremap进行映射
 tnoremap <silent> <leader>q <C-\><C-n>:FloatermToggle<CR>
 " nnoremap <silent> <leader>o :FloatermToggle<CR>
@@ -167,5 +200,8 @@ inoremap ( ()<Esc>i
 inoremap { {}<Esc>i
 inoremap ' ''<Esc>i
 inoremap " ""<Esc>i
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 870bee3b04ea00fb9c3e8ac7d974a4e22cd328ba
