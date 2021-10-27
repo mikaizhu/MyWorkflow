@@ -1,35 +1,19 @@
-<<<<<<< HEAD
 " TODO
 " 1. 添加代码折叠功能
 " 2. 为文件添加状态栏
 
-=======
->>>>>>> 870bee3b04ea00fb9c3e8ac7d974a4e22cd328ba
 " abbrev 是替换的缩写，i表示只有insert模式下才会起作用
 " 将前面替换成后面, 遇到空格后替换
 iabbrev @@    steve@stevelosh.com
 iabbrev ccopy Copyright 2013 Steve Losh, all rights reserved.
 
-<<<<<<< HEAD
 " 自己定义新的移动方式：all 可以配合dall 和 yall复制和删除所有
 onoremap all :<c-u>execute "normal! ggVG"<cr>
 
-=======
-" 自动命令学习:autocmd
-" :autocmd BufNewFile * :write
-"         ^          ^ ^
-"         |          | |
-"         |          | 要执行的命令
-"         |          |
-"         |          用于事件过滤的“模式（pattern, 如果是*.txt则只对txt文件有效”
-"         |
-"         要监听的“事件”
->>>>>>> 870bee3b04ea00fb9c3e8ac7d974a4e22cd328ba
 " bufwritePre会检测是否有新的缓存区出现，如果有则执行后面命令
 " autocmd BufWritePre *.html :normal gg=G
 
 " vim缓冲区的设置 <buffer>
-<<<<<<< HEAD
 " 缓冲区只对在同一个缓存区的文件有效, 下面代码只在某文件中leader键起作用
 " :autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
 " :autocmd FileType python     nnoremap <buffer> <localleader>c I#<esc>
@@ -42,16 +26,14 @@ onoremap all :<c-u>execute "normal! ggVG"<cr>
 " vim operator learning
 " 即可以自己定义移动的方式，vim常用的为 操作 + 移动
 " Vim允许你创建任何新的movements，这些movements可以跟所有命令一起工作。
+" 取消vim换行自动注释
 
-" vim状态条的设置
-set statusline=%f         " 文件的路径
-set statusline+=%=        " 切换到右边
-set statusline+=%l        " 当前行
-set statusline+=/         " 分隔符
-set statusline+=%L        " 总行数
-=======
-iabbrev <buffer> --- &mdash;
->>>>>>> 870bee3b04ea00fb9c3e8ac7d974a4e22cd328ba
+" 让vim可以使用鼠标操作
+set mouse=a
+
+"set nopaste
+" Editing
+
 
 let g:mapleader=';'
 
@@ -72,23 +54,30 @@ nnoremap <leader>ev :vsplit $HOME/.config/nvim/init.vim<CR>
 " u是恢复，U是撤销恢复
 nnoremap U <C-r>
 
-" 打开记录行号
-set nu 
+" 打开记录行号, 会突出当前行
+set nu cursorline
 syntax on
+" 一行显示多少个字符
 
-"" 打开文件时回复上一次光标位置
+set textwidth=100
+
+
+" 打开文件时回复上一次光标位置
+"
 autocmd BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
 
-
 " vim font config: vim-devicons
+autocmd BufEnter * setl formatoptions-=o " 禁止自动插入注释
+
 set encoding=UTF-8
 let g:webdevicons_enable = 1
 let g:webdevicons_enable_nerdtree = 1
 
 " vim theme config: gruvbox
+
 autocmd vimenter * ++nested colorscheme gruvbox
 if (empty($TMUX))
   if (has("nvim"))
@@ -114,40 +103,26 @@ let g:floaterm_width=0.5
 "让terminal打开默认的是当前项目的目录下"
 let g:floaterm_borderchars='.root'
 
-<<<<<<< HEAD
 " 函数中的指令，默认会在后面使用回车，所以不需要手动加入
-function! Fn()
+function! Fln()
 	:w!
 	:FloatermNew
 endfunction
 
-nnoremap <silent> <Leader>fn :call Fn()<CR>
-=======
-" 这里fn命令不建议加回车，因为可以有后面操作
-function CreateFloaterm()
-	w<CR>	
-	FloatermNew
-endfunction
-
-nnoremap <silent> <Leader>fn :call CreateFloaterm()<CR>
->>>>>>> 870bee3b04ea00fb9c3e8ac7d974a4e22cd328ba
+nnoremap <silent> <Leader>fln :call Fln()<CR>
 nnoremap <Leader>sh :FloatermShow<CR>
 nnoremap <Leader>fk :FloatermKill<CR>
 " 普通模式下如果send不加回车，可视模式下加回车，可以直接将可视部分send进命令
 nnoremap <Leader>fs :FloatermSend
 vnoremap <Leader>fs :FloatermSend<CR>
 
-<<<<<<< HEAD
 
 function! Ft()
 	:w!
 	:FloatermToggle<CR>
 endfunction
-nnoremap <silent> <Leader>fo :call Ft()<CR>
+nnoremap <silent> <Leader>of :call Ft()<CR>
 
-=======
-nnoremap <silent> <Leader>ft :w<CR>:FloatermToggle<CR>
->>>>>>> 870bee3b04ea00fb9c3e8ac7d974a4e22cd328ba
 "进入命令行模式后，要用tnoremap进行映射
 tnoremap <silent> <leader>q <C-\><C-n>:FloatermToggle<CR>
 " nnoremap <silent> <leader>o :FloatermToggle<CR>
@@ -159,11 +134,108 @@ nnoremap <silent> <C-b>l <C-w>l
 " plug 
 call plug#begin()
 Plug 'preservim/nerdtree'
+
 Plug 'ojroques/vim-oscyank'
+
 Plug 'ryanoasis/vim-devicons'
+
 Plug 'morhetz/gruvbox'
+
 Plug 'voldikss/vim-floaterm'
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+Plug 'lervag/vimtex'
+
+Plug 'sainnhe/gruvbox-material'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+"language plugin
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+
 call plug#end()
+
+" coc config"
+" extention can be found: https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
+" 每次启动会自动为coc安装一些插件, 建议手动安装这些插件
+"let g:coc_global_extensions = [
+"			\'coc-clanged',
+"			\'coc-cmake',
+"			\'coc-python',
+"			\'coc-git',
+"			\'coc-sh',
+"			\'coc-sql',
+"			\'coc-textlab']
+
+function! Show_documentation()
+	call CocActionAsync('highlight')
+	if (index(['vim','help'], &filetype) >= 0)
+		execute 'h '.expand('<cword>')
+	else
+		call CocAction('doHover')
+	endif
+endfunction
+
+set updatetime=100
+nnoremap <LEADER>h :call Show_documentation()<CR>
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gm <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+"vim airline config
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='deus'
+let g:airline_left_sep='>'
+
+
+" telescope config
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 
 " nerd tree config
@@ -200,8 +272,6 @@ inoremap ( ()<Esc>i
 inoremap { {}<Esc>i
 inoremap ' ''<Esc>i
 inoremap " ""<Esc>i
-<<<<<<< HEAD
+inoremap [ []<Esc>i
 
 
-=======
->>>>>>> 870bee3b04ea00fb9c3e8ac7d974a4e22cd328ba

@@ -36,7 +36,6 @@ alias vim=nvim
 
 推荐两个vim配置：
 - vim: https://github.com/youngyangyang04/PowerVim
-- nvim: https://github.com/theniceboy/nvim
 
 ## nvim配置需求
 
