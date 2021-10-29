@@ -83,3 +83,22 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 Vundle - Plugin 'fcpg/vim-osc52'
 vmap <C-c> y:Oscyank<cr>
 ```
+
+# zsh 配置
+
+网站：https://github.com/ohmyzsh/ohmyzsh
+
+主要文件:
+
+- $HOME/.zshenv 每次启动都会运行里面的命令
+- $HOME/.zshrc 配置zsh的文件
+
+> .zshenv 这个文件是每次都会被在启动时加载的，这里一般存放需要导出的一些全局变量,比如 JAVA_HOME 、GOPATH 这种。PATH , EDITOR 以及PAGER一般也可以放在这里，如果你想变更zsh配置文件的其他存放位置，可以通过设置 ZDOTDIR 变量来指定；alias 等
+> .zshrc 这里是交互式Shell配置，我们就是在这里加载模块、变更历史配置、更改提示符等等。在这里可以设置一些本地使用的变量；
+
+推荐的插件有：
+
+- autojump
+- vim-mode
+
+
