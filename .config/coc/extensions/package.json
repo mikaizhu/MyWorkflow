@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "coc-cmake": ">=0.2.0",
+    "coc-git": ">=2.4.3",
+    "coc-python": ">=1.2.13",
+    "coc-texlab": ">=3.2.0",
+    "coc-vimlsp": ">=0.12.5"
+  }
+}
